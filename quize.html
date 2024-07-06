@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('photos/2384073.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .question-container {
+            display: none;
+            background-color: aqua;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .question-container.active {
+            display: block;
+            
+        }
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination-controls button {
+            color: #50c824;
+            background-color: #2f16c1;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .pagination-controls button:hover {
+            background-color: #1e0a9a;
+            color: #ffffff;
+        }
+        #scorePopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #000;
+            z-index: 1000;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        #timer{
+            color: red;
+            font-size: 30px;
+            font-weight: bolder ;
+            position: fixed;
+            border: 10px;
+            width: 100%;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+
+    <div id="quizContainer">
+        <!-- Page 1: Questions 1-5 -->
+        <div class="question-container" id="page1">
+        <br>
+            <div>
+                <label>Question 1: What is 2 + 2?</label>
+                <input type="text" name="question1">
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 2: Select the colors you like:</label>
+                <input type="checkbox" name="question2" value="Red"> Red
+                <input type="checkbox" name="question2" value="Blue"> Blue
+                <input type="checkbox" name="question2" value="Green"> Green
+            </div>
+            <br>
+           
+            <div>
+                <label>Question 3: What is the capital of France?</label>
+                <input type="radio" name="question3" value="Paris"> Paris
+                <input type="radio" name="question3" value="London"> London
+                <input type="radio" name="question3" value="Berlin"> Berlin
+            </div>
+            <br>
+          
+            <div>
+                <label>Question 4: Choose your favorite fruit:</label>
+                <select name="question4">
+                    <option value="Apple">Apple</option>
+                    <option value="Banana">Banana</option>
+                    <option value="Orange">Orange</option>
+                </select>
+            </div>
+            <br>
+           
+            <div>
+                <label>Question 5: Describe your experience with programming:</label>
+                <textarea name="question5"></textarea>
+            </div>
+        </div>
+
+        <!-- Page 2: Questions 6-10 -->
+        <div class="question-container" id="page2">
+        <br>
+            <div>
+                <label>Question 6: What is 5 x 5?</label>
+                <input type="text" name="question6">
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 7: Select the animals you like:</label>
+                <input type="checkbox" name="question7" value="Cat"> Cat
+                <input type="checkbox" name="question7" value="Dog"> Dog
+                <input type="checkbox" name="question7" value="Bird"> Bird
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 8: What is the capital of Japan?</label>
+                <input type="radio" name="question8" value="Tokyo"> Tokyo
+                <input type="radio" name="question8" value="Osaka"> Osaka
+                <input type="radio" name="question8" value="Kyoto"> Kyoto
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 9: Choose your favorite sport:</label>
+                <select name="question9">
+                    <option value="Soccer">Soccer</option>
+                    <option value="Basketball">Basketball</option>
+                    <option value="Tennis">Tennis</option>
+                </select>
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 10: Describe your favorite hobby:</label>
+                <textarea name="question10"></textarea>
+            </div>
+        </div>
+
+        <!-- Page 3: Questions 11-15 -->
+        <div class="question-container" id="page3">
+        <br>
+            <div>
+                <label>Question 11: What is 10 / 2?</label>
+                <input type="text" name="question11">
+            </div>
+            <br>
+           
+            <div>
+                <label>Question 12: Select your favorite programming languages:</label>
+                <input type="checkbox" name="question12" value="JavaScript"> JavaScript
+                <input type="checkbox" name="question12" value="Python"> Python
+                <input type="checkbox" name="question12" value="Java"> Java
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 13: What is the capital of Italy?</label>
+                <input type="radio" name="question13" value="Rome"> Rome
+                <input type="radio" name="question13" value="Milan"> Milan
+                <input type="radio" name="question13" value="Venice"> Venice
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 14: Choose your favorite season:</label>
+                <select name="question14">
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Autumn">Autumn</option>
+                    <option value="Winter">Winter</option>
+                </select>
+            </div>
+            <br>
+           
+            <div>
+                <label>Question 15: Describe your dream job:</label>
+                <textarea name="question15"></textarea>
+            </div>
+        </div>
+
+        <!-- Page 4: Questions 16-20 -->
+        <div class="question-container" id="page4">
+        <br>
+            <div>
+                <label>Question 16: What is 7 - 3?</label>
+                <input type="text" name="question16">
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 17: Select your preferred modes of transport:</label>
+                <input type="checkbox" name="question17" value="Car"> Car
+                <input type="checkbox" name="question17" value="Bike"> Bike
+                <input type="checkbox" name="question17" value="Train"> Train
+            </div>
+            <br>
+            
+            <div>
+                <label>Question 18: What is the capital of Canada?</label>
+                <input type="radio" name="question18" value="Ottawa"> Ottawa
+                <input type="radio" name="question18" value="Toronto"> Toronto
+                <input type="radio" name="question18" value="Vancouver"> Vancouver
+            </div>
+            <br>
+    
+            <div>
+                <label>Question 19: Choose your favorite type of cuisine:</label>
+                <select name="question19">
+                    <option value="Italian">Italian</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Mexican">Mexican</option>
+                </select>
+            </div>
+            <br>
+            <br>
+            <div>
+                <label>Question 20: Describe your travel experience:</label>
+                <textarea name="question20"></textarea>
+            </div>
+        </div>
+        <br>
+            <br>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-controls">
+            <button id="prevButton">Previous</button>
+            <button id="nextButton">Next</button>
+        </div>
+        <button id="submitButton">Submit</button>
+    </div>
+
+    <div id="overlay"></div>
+    <div id="scorePopup"></div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
